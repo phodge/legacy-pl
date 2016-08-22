@@ -1,0 +1,96 @@
+1) Basic structure overview
+- language version header
+- stdlib versioning
+- data & programs (values/copies vs pointers/references)
+- exception / error handling
+- scoping and garbage collection
+- compile as Library or Binary
+- type system?
+
+
+2) Parallelism
+- programs as threads and processes
+- lazy variables
+- parallel language constructs: all(...) { ... }
+- sorted/unsorted lists and other primitives
+- also runs on GPU?
+CHALLENGES:
+- how do we handle recursion???
+- how do we manage garbage collection?
+  (who owns the pointer to a program and how do we know when it can be GC'd?)
+- how hard is it to run some code on a GPU???
+
+
+3) Value-based static analysis
+- evaluating all possible values as well as types
+- example of program that multiplies 2 numbers - might raise an error
+- "exceptions with tracebacks"
+- assert() can be used for things unknown at runtime
+- prove() can be used for things that should be provable at compile time
+- successful compilation when no uncaught exceptions are possible
+- ask IDE for possible return values etc (rather than just types)
+CHALLENGES:
+- "if you transform these 3 numbers using these operations and then convert it
+  to a base-10 string and concatenate it with this otyher string and then
+  perform this other operation - will it match this regular expression?"
+
+
+4) Haskell-like Optimization
+- function calls with no executable code are free
+- no-op { ... } blocks
+- zero-cost "safety net" abstraction layers
+- value-based optimizations
+  - don't use a real dict construct if less than X elements
+  - select integer types based on min/max values and types of operations
+- ask compiler about cost of executing code X
+CHALLENGES:
+- calculating the cost of machine code
+
+
+5) Static Unit-Testing
+- compiler evaluates possible results of running unit tests and warns if there
+  are possible errors
+- compiler able to create a mock filesystem to simulate reading/writing of
+  files during tests
+CHALLENGES:
+- what about RPC between two systems?
+
+
+6) Extending the language / libraries
+- for your organisation
+- for yourself
+- hooks for no-op code to jump in and do things
+- easily pull in code from online git repos (by tag or branch?)
+- online index of packages / extensions / tools
+  - reviews / comparisons
+  - rank packages by reviews of people I trust
+  - discover things relevant to me
+- ability to modify the grammar easily
+CHALLENGES:
+- buy-in into the index site
+
+
+7) RPC with other languages
+- spin up a PHP process (or 2) and call functions on it
+- call C/C++ libraries natively?
+CHALLENGES:
+- unknown?
+
+
+8) Optimization-Annotations
+- optimum strategy chosen based on Unit Test inputs
+- generic structures with multiple implementations
+  (List could be vector, linked-list, doubly-linked list etc)
+- List.sort() could use bubble-sort, merge-sort, etc
+- syntax extension allows you specify exactly which data structures and
+  algorithms to use for maximum speed (in case the compiler is wrong!)
+- syntax extensions are guaranteed to have no impact on accuracy of code - you
+  can safely come back and add them later if you need more performance
+
+
+9) Refactoring helper
+- lock down library external interface, prevent making breaking changes
+CHALLENGES:
+- what does this look like exactly?
+
+
